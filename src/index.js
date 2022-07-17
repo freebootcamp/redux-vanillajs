@@ -1,5 +1,11 @@
 import store from "./store";
-import { addition, subtraction, multiplication, division } from "./actions";
+import {
+  addition,
+  subtraction,
+  multiplication,
+  division,
+  additionWithRandomNumber,
+} from "./actions";
 
 function calculate() {
   console.log("inside the button");
@@ -44,6 +50,14 @@ function calculate() {
           number2: number2,
         })
       );
+
+    case "random":
+      store.dispatch(
+        additionWithRandomNumber({
+          number1: number1,
+          number2: number2,
+        })
+      );
       break;
     default:
       break;
@@ -54,5 +68,10 @@ document.querySelector("button").addEventListener("click", calculate);
 
 store.subscribe(() => {
   console.log(`state has changed: ${JSON.stringify(store.getState())}`);
-  document.querySelector(".output").innerHTML = store.getState().output;
+  if (store.getState().output) {
+    document.querySelector(".output").innerHTML = store.getState().output;
+  }
+  if (store.getState().error) {
+    document.querySelector(".error").innerHTML = store.getState().error;
+  }
 });

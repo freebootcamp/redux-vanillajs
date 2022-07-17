@@ -27,3 +27,24 @@ export function division(payload) {
     payload: payload,
   };
 }
+
+export function additionWithRandomNumber(payload) {
+  return {
+    type: actionTypes.ADD_WITH_RANDOM,
+    payload: payload,
+  };
+}
+
+export function additionWithRandomNumberSuccess(payload) {
+  return {
+    type: actionTypes.ADD_WITH_RANDOM_SUCCESS,
+    payload: payload,
+  };
+}
+
+export function additionWithRandomNumberFailure(error) {
+  return {
+    type: actionTypes.ADD_WITH_RANDOM_FAILURE,
+    payload: { error: error.toString() },
+  };
+}

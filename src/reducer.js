@@ -26,6 +26,16 @@ export default function reducer(state = { output: 0 }, action) {
           parseInt(action.payload.number1) / parseInt(action.payload.number2),
       };
 
+    case actionTypes.ADD_WITH_RANDOM_SUCCESS:
+      return {
+        output: action.payload.output,
+      };
+
+    case actionTypes.ADD_WITH_RANDOM_FAILURE:
+      return {
+        error: action.payload.error,
+      };
+
     default:
       return state;
   }
