@@ -5,6 +5,7 @@ import {
   multiplication,
   division,
   additionWithRandomNumber,
+  multiplicationWithRandom,
 } from "./actions";
 
 function calculate() {
@@ -50,6 +51,7 @@ function calculate() {
           number2: number2,
         })
       );
+      break;
 
     case "random":
       store.dispatch(
@@ -59,6 +61,16 @@ function calculate() {
         })
       );
       break;
+
+    case "multiplyRandom":
+      store.dispatch(
+        multiplicationWithRandom({
+          number1: number1,
+          number2: number2,
+        })
+      );
+      break;
+
     default:
       break;
   }

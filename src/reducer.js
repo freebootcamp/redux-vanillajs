@@ -36,6 +36,16 @@ export default function reducer(state = { output: 0 }, action) {
         error: action.payload.error,
       };
 
+    case actionTypes.MULTIPLY_WITH_RANDOM_SUCCESS:
+      return {
+        output: action.payload.output,
+      };
+
+    case actionTypes.MULTIPLY_WITH_RANDOM_FAILURE:
+      return {
+        error: action.payload.error,
+      };
+
     default:
       return state;
   }

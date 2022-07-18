@@ -48,3 +48,24 @@ export function additionWithRandomNumberFailure(error) {
     payload: { error: error.toString() },
   };
 }
+
+export function multiplicationWithRandom(payload) {
+  return {
+    type: actionTypes.MULTIPLY_WITH_RANDOM,
+    payload: payload,
+  };
+}
+
+export function multiplicationWithRandomSuccess(payload) {
+  return {
+    type: actionTypes.MULTIPLY_WITH_RANDOM_SUCCESS,
+    payload: payload,
+  };
+}
+
+export function multiplicationWithRandomFailure(error) {
+  return {
+    type: actionTypes.MULTIPLY_WITH_RANDOM_FAILURE,
+    payload: { error: error.toString() },
+  };
+}

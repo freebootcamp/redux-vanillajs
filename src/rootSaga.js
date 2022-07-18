@@ -2,6 +2,8 @@ import * as actionTypes from "./actionTypes";
 import {
   additionWithRandomNumberSuccess,
   additionWithRandomNumberFailure,
+  multiplicationWithRandomSuccess,
+  multiplicationWithRandomFailure,
 } from "./actions";
 import { call, takeEvery, put, all } from "redux-saga/effects";
 import axios from "axios";
@@ -24,6 +26,24 @@ function* addWithRandom(action) {
   }
 }
 
+function* multiplyWithRandom(action) {
+  console.log(`Inside multiplyWithRandom ${JSON.stringify(action)}`);
+  try {
+    const response = yield call(callApiRandomNumber);
+    console.log(`response.data : ${JSON.stringify(response.data, null, 2)}`);
+    yield put(
+      multiplicationWithRandomSuccess({
+        output:
+          parseInt(response.data[0]) *
+          parseInt(action.payload.number1) *
+          parseInt(action.payload.number2),
+      })
+    );
+  } catch (e) {
+    yield put(multiplicationWithRandomFailure(e.toString()));
+  }
+}
+
 function* callApiRandomNumber() {
   console.log(`Inside callApiRandomNumber`);
 
@@ -37,7 +57,10 @@ function* callApiRandomNumber() {
 
 function* rootSaga() {
   console.log(`inside rootSaga`);
-  yield all([takeEvery(actionTypes.ADD_WITH_RANDOM, addWithRandom)]);
+  yield all([
+    takeEvery(actionTypes.ADD_WITH_RANDOM, addWithRandom),
+    takeEvery(actionTypes.MULTIPLY_WITH_RANDOM, multiplyWithRandom),
+  ]);
 }
 
 export default rootSaga;
