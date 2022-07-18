@@ -14,7 +14,9 @@ function* addWithRandom(action) {
     yield put(
       additionWithRandomNumberSuccess({
         output:
-          response.data[0] + action.payload.number1 + action.payload.number2,
+          parseInt(response.data[0]) +
+          parseInt(action.payload.number1) +
+          parseInt(action.payload.number2),
       })
     );
   } catch (e) {
